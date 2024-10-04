@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -17,7 +16,7 @@ public class GeradorDeNumero extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_gerador_de_numero);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -25,11 +24,12 @@ public class GeradorDeNumero extends AppCompatActivity {
             return insets;
         });
     }
-    public void sorteioNumeros(View view) {
-        Random num = new Random();
-        int numAleatorio = num.nextInt(101);
+    public void sorteioNum(View view) {
+       Random numero = new Random();
+       int numAleatorio = numero.nextInt(11);
 
-        TextView resultadoTextView = findViewById(R.id.textView5);
+
+        TextView resultadoTextView = findViewById(R.id.resultado);
         resultadoTextView.setText(numAleatorio);
     }
 

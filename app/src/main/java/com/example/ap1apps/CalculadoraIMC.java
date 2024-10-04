@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -16,7 +16,6 @@ public class CalculadoraIMC extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calculadora_imc);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -25,10 +24,10 @@ public class CalculadoraIMC extends AppCompatActivity {
         });
 
     }
-    public void calculadoraImc(View view) {
 
-        EditText inputPeso = findViewById(R.id.textinput1);
-        EditText inputAltura = findViewById(R.id.textinput2);
+    public void calculadoraImc(View view) {
+        EditText inputPeso = findViewById(R.id.editTextNumberDecimal);
+        EditText inputAltura = findViewById(R.id.editTextNumberDecimal2);
 
         String pesoStr = inputPeso.getText().toString();
         String alturaStr = inputAltura.getText().toString();
@@ -39,7 +38,7 @@ public class CalculadoraIMC extends AppCompatActivity {
         float imc;
 
         imc = peso / (altura * altura);
-        TextView texto = findViewById(R.id.textView4);
+        TextView texto = findViewById(R.id.textView9);
         if (imc < 18.5){
             texto.setText("Baixo peso" + imc);
         }

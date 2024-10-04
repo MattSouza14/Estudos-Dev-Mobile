@@ -42,7 +42,7 @@
         android:id="@+id/textView4"
         android:layout_width="342dp"
         android:layout_height="72dp"
-        android:text="Resultado é                             V"
+        android:text="Resultado é "
         android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,10 +50,10 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.303" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/resultado"
         android:layout_width="335dp"
         android:layout_height="137dp"
         android:textSize="34sp"
@@ -62,5 +62,5 @@
         app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.579" />
+        app:layout_constraintVertical_bias="0.629" />
 </androidx.constraintlayout.widget.ConstraintLayout>
