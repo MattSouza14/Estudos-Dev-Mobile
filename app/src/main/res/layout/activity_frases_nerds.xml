@@ -24,10 +24,10 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="377dp"
-        android:layout_height="200dp"
-        android:textAlignment="center"
-        android:textSize="16sp"
+        android:layout_width="320dp"
+        android:layout_height="171dp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

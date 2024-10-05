@@ -24,14 +24,15 @@ public class GeradorDeNumero extends AppCompatActivity {
             return insets;
         });
     }
+
+
     public void sorteioNum(View view) {
-       Random numero = new Random();
+        Random numero = new Random();
        int numAleatorio = numero.nextInt(11);
 
 
         TextView resultadoTextView = findViewById(R.id.resultado);
-        resultadoTextView.setText(numAleatorio);
+        resultadoTextView.setText(String.valueOf(numAleatorio));
+
     }
-
-
 }

@@ -28,7 +28,7 @@
         android:id="@+id/button"
         android:layout_width="149dp"
         android:layout_height="55dp"
-        android:onClick="sorteioNumeros"
+        android:onClick="sorteioNum"
         android:text="Gerar"
         android:textSize="24sp"
         android:textStyle="bold"
