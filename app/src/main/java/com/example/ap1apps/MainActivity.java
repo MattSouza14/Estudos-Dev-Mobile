@@ -42,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
            Toast.makeText(this, "Email ou senha incorretos", Toast.LENGTH_SHORT).show();
         }
     }
+    public void cadastro(View view){
+        Intent telaCadastro = new Intent(this, CriarConta.class);
+        startActivity(telaCadastro);
+    }
 
 
 }
