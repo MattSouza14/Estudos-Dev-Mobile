@@ -35,10 +35,13 @@ public class MainActivity extends AppCompatActivity {
         String senha = inputSenha.getText().toString();
 
         if (email.equals(emailCorreto) && senha.equals(senhaCorreta)) {
+            Toast.makeText(this, "Login realizado", Toast.LENGTH_SHORT).show();
             Intent segunda_tela = new Intent(this, ListaApps.class);
             startActivity(segunda_tela);
         } else {
            Toast.makeText(this, "Email ou senha incorretos", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }
