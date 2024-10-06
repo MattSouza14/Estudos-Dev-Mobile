@@ -53,7 +53,7 @@ public class Abastecimento extends AppCompatActivity {
             float result = Alcool / Gasolina;
             TextView texto = findViewById(R.id.textView4);
 
-            if (result < 0.7) {
+            if (result > 0.7) {
                 texto.setText("Abasteça com Alcool");
             } else {
                 texto.setText("Abasteça com Gasolina");
