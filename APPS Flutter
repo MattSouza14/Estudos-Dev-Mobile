@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
         appScreen = const IMCScreen();
         break;
       case 2:
-        appScreen = const PhraseGeneratorScreen();
+        appScreen = const FraseScreen();
         break;
       default:
         return;
@@ -215,14 +215,14 @@ class _IMCScreenState extends State<IMCScreen> {
   }
 }
 
-class PhraseGeneratorScreen extends StatefulWidget {
-  const PhraseGeneratorScreen({super.key});
+class FraseScreen extends StatefulWidget {
+  const FraseScreen({super.key});
 
   @override
-  _PhraseGeneratorScreenState createState() => _PhraseGeneratorScreenState();
+  _FraseScreenState createState() => _FraseScreenState();
 }
 
-class _PhraseGeneratorScreenState extends State<PhraseGeneratorScreen> {
+class _FraseScreenState extends State<FraseScreen> {
   String frase = '';
 
   void gerarFrases() {
