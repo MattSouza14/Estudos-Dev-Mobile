@@ -1,0 +1,270 @@
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Login App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const LoginScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController nomeUsuarioController = TextEditingController();
+  final TextEditingController senhaUsuarioController = TextEditingController();
+
+  String userName = "Matt";
+  String password = "matt";
+
+  void login() {
+    if (nomeUsuarioController.text == userName &&
+        senhaUsuarioController.text == password) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Nome ou senha inválidos")),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("LOGIN APPS - AP2"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: nomeUsuarioController,
+              decoration: const InputDecoration(labelText: 'Nome de usuário'),
+            ),
+            TextField(
+              controller: senhaUsuarioController,
+              decoration: const InputDecoration(labelText: 'Senha'),
+              obscureText: true,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: login,
+              child: const Text("Entrar"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  void escolherApp(BuildContext context, int appOption) {
+    Widget appScreen;
+    switch (appOption) {
+      case 1:
+        appScreen = const IMCScreen();
+        break;
+      case 2:
+        appScreen = const PhraseGeneratorScreen();
+        break;
+      default:
+        return;
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => appScreen),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Escolha um APP"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => escolherApp(context, 1),
+              child: const Text("1 - IMC"),
+            ),
+            ElevatedButton(
+              onPressed: () => escolherApp(context, 2),
+              child: const Text("2 - Gerador de Frases"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+              child: const Text("3 - Sair"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class IMCScreen extends StatefulWidget {
+  const IMCScreen({super.key});
+
+  @override
+  _IMCScreenState createState() => _IMCScreenState();
+}
+
+class _IMCScreenState extends State<IMCScreen> {
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController pesoController = TextEditingController();
+  final TextEditingController alturaController = TextEditingController();
+  String resultado = '';
+
+  void calcularIMC() {
+    double? peso = double.tryParse(pesoController.text);
+    double? altura = double.tryParse(alturaController.text);
+
+    if (peso != null && altura != null && altura > 0) {
+      double imc = peso / (altura * altura);
+      String status;
+      if (imc < 18.5) {
+        status = 'IMC: abaixo do ideal';
+      } else if (imc < 24.9) {
+        status = 'IMC: peso normal';
+      } else if (imc < 29.9) {
+        status = 'IMC: Obesidade grau I';
+      } else if (imc < 34.9) {
+        status = 'IMC: Obesidade grau II';
+      } else {
+        status = 'IMC: Obesidade grau III';
+      }
+      setState(() {
+        resultado = 'Paciente: ${nomeController.text}\n$status - ${imc.toStringAsFixed(2)}';
+      });
+    } else {
+      setState(() {
+        resultado = "Valores inválidos";
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Calcular IMC"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: nomeController,
+              decoration: const InputDecoration(labelText: 'Nome'),
+            ),
+            TextField(
+              controller: pesoController,
+              decoration: const InputDecoration(labelText: 'Peso (kg)'),
+              keyboardType: TextInputType.number,
+            ),
+            TextField(
+              controller: alturaController,
+              decoration: const InputDecoration(labelText: 'Altura (m)'),
+              keyboardType: TextInputType.number,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: calcularIMC,
+              child: const Text("Calcular IMC"),
+            ),
+            const SizedBox(height: 20),
+            Text(resultado, style: const TextStyle(fontSize: 18)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PhraseGeneratorScreen extends StatefulWidget {
+  const PhraseGeneratorScreen({super.key});
+
+  @override
+  _PhraseGeneratorScreenState createState() => _PhraseGeneratorScreenState();
+}
+
+class _PhraseGeneratorScreenState extends State<PhraseGeneratorScreen> {
+  String frase = '';
+
+  void gerarFrases() {
+    List<String> frasesNerds = [
+      "É assim que morre a democracia, com um estrondoso aplauso",
+      "Velocidade, eu sou a velocidade",
+      "Oi, eu sou o Goku",
+      "Ao infinito e além",
+      "Nós temos o Hulk"
+    ];
+
+    Random fraseRandom = Random();
+    int indiceDaFrase = fraseRandom.nextInt(frasesNerds.length);
+
+    setState(() {
+      frase = frasesNerds[indiceDaFrase];
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Gerador de Frases"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: gerarFrases,
+              child: const Text("Gerar Frase"),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              frase,
+              style: const TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
